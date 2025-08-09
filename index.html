@@ -12,55 +12,77 @@
   <meta property="og:url" content="https://batulmonarchy.github.io/" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     /* ===== Theme ===== */
     :root{
-      --bg:#0c0f14;            /* page background */
-      --panel:#121826;          /* cards / navbar */
-      --panel-2:#0f1420;        /* subtle contrast */
+      --bg:#0b0e14;            /* page background */
+      --panel:#0f1420;          /* cards / navbar */
+      --panel-2:#0b111d;        /* subtle contrast */
       --text:#e6e9ef;           /* main text */
       --muted:#9aa3b2;          /* muted text */
-      --accent:#c8a96a;         /* refined gold */
-      --accent-2:#8aa4ff;       /* cool secondary */
-      --ring:rgba(200,169,106,.28);
+      --accent:#d6b46c;         /* refined gold */
+      --accent-2:#7aa2ff;       /* cool secondary */
+      --ring:rgba(214,180,108,.28);
       --border:rgba(255,255,255,.08);
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --shadow:0 16px 50px rgba(0,0,0,.35);
+      --grad: radial-gradient(1200px 600px at 10% -10%, rgba(214,180,108,.18), transparent 50%),
+              radial-gradient(900px 500px at 110% 0%, rgba(122,162,255,.14), transparent 55%);
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
     a{color:var(--accent);text-decoration:none}
-    a:hover{opacity:.9}
+    a:hover{opacity:.92}
 
     /* ===== Layout ===== */
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(12,15,20,.9),rgba(12,15,20,.65));backdrop-filter:blur(10px);z-index:20;border-bottom:1px solid var(--border)}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(11,14,20,.92),rgba(11,14,20,.68));backdrop-filter:blur(10px);z-index:40;border-bottom:1px solid var(--border);transition: box-shadow .2s ease}
+    header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
     nav{display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
-    .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--ring)}
-    .nav-links a{margin-left:18px;color:var(--muted);font-weight:600}
-    .nav-links a.active,.nav-links a:focus{color:var(--text)}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.4px}
+    .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--ring)}
+    .nav-links a{margin-left:18px;color:var(--muted);font-weight:600;position:relative}
+    .nav-links a:after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s ease}
+    .nav-links a:hover:after,.nav-links a.active:after{width:100%}
 
-    section{padding:72px 0;border-bottom:1px solid var(--border)}
+    section{padding:84px 0;border-bottom:1px solid var(--border)}
     .hero{display:grid;grid-template-columns:1.4fr .6fr;gap:28px;align-items:center}
 
     /* ===== Typography ===== */
     h1,h2,h3{margin:0 0 12px}
-    h1{font-size:44px;letter-spacing:.2px}
+    h1{font-size:46px;letter-spacing:.2px}
     h1 .name{color:var(--text);font-weight:800}
     h2{font-size:28px;color:var(--accent);font-weight:800}
     h3{font-size:20px;color:var(--text);font-weight:700}
     .lead{font-size:18px;color:var(--muted)}
 
     /* ===== Cards / badges ===== */
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
     .p-24{padding:24px}
     .grid{display:grid;gap:18px}
     .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     .badges{display:flex;flex-wrap:wrap;gap:10px}
-    .badge{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--panel-2);font-size:13px;color:var(--muted)}
+    .badge{padding:7px 12px;border:1px solid var(--border);border-radius:999px;background:var(--panel-2);font-size:13px;color:var(--muted);transition:transform .2s ease}
+    .badge:hover{transform:translateY(-2px)}
+
+    /* ===== Motion ===== */
+    .bg-accents{position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--grad)}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.on{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+    /* ===== Cert list ===== */
+    .cert{display:flex;gap:14px;align-items:flex-start;padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel-2)}
+    .cert img{width:28px;height:28px;object-fit:contain;filter:grayscale(.1)}
+    .cert-title{font-weight:700}
+    .cert-meta{color:var(--muted);font-size:13px}
+
+    /* ===== Project cards (tilt) ===== */
+    .tilt{transform-style:preserve-3d;transition:transform .15s ease}
+    .tilt:hover{transform:perspective(800px) rotateX(2deg) rotateY(-2deg)}
 
     /* ===== Footer ===== */
     footer{padding:32px 0;text-align:center;color:var(--muted)}
@@ -70,8 +92,10 @@
   </style>
 </head>
 <body>
+  <div class="bg-accents" aria-hidden="true"></div>
+
   <!-- ===== Nav ===== -->
-  <header>
+  <header id="hdr">
     <div class="container">
       <nav>
         <div class="logo"><span class="logo-dot"></span><span>A/B</span></div>
@@ -87,16 +111,16 @@
 
   <!-- ===== Hero ===== -->
   <section class="container hero" id="top">
-    <div>
+    <div class="reveal">
       <h1><span class="name">Austin Batul</span><br/>IT Consultant</h1>
-      <p class="lead">Cloud • Security • Networks • Support • Systems Engineering. M.S. Cybersecurity candidate; building toward Solutions Architecture & FinTech with efficient use of AI/ML.</p>
+      <p class="lead">Cloud • Security • Networks • Support • Systems Engineering. MSc Cybersecurity candidate; building toward Solutions Architecture & FinTech with efficient use of AI/ML.</p>
       <div class="badges" style="margin-top:10px">
         <a class="badge" href="mailto:batulaustin.work@gmail.com">Email</a>
         <a class="badge" href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="badge" href="https://github.com/AustinColeBatu" target="_blank" rel="noopener">GitHub</a>
+        <a class="badge" href="https://github.com/batulmonarchy" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
-    <div class="card p-24">
+    <div class="card p-24 reveal tilt">
       <h3>Snapshot</h3>
       <p class="lead">Currently supporting cloud & enterprise environments, designing secure, efficient systems and exploring AI/ML patterns for practical automation.</p>
     </div>
@@ -104,63 +128,151 @@
 
   <!-- ===== About ===== -->
   <section id="about" class="container">
-    <h2>About Me</h2>
-    <div class="card p-24">
+    <h2 class="reveal">About Me</h2>
+    <div class="card p-24 reveal">
       <p>Austin is an experienced IT professional working across development, cloud, security, networks, support, and systems engineering. He’s currently pursuing a Master’s in Cybersecurity while building a portfolio in solutions architecture and fintech, focusing on smart, efficient use of AI/ML. Long term, he’s aiming to contribute to quantitative finance. A lifelong interest in the humanities and social sciences keeps his perspective grounded and broad, shaping how he thinks about people, products, and the industries around them.</p>
     </div>
   </section>
 
   <!-- ===== Certifications ===== -->
   <section id="certs" class="container">
-    <h2>Certifications</h2>
-    <div class="grid grid-2">
-      <div class="card p-24">
+    <h2 class="reveal">Certifications</h2>
+
+    <div class="grid grid-3">
+      <!-- New additions -->
+      <div class="card p-24 reveal">
         <h3>New Additions</h3>
-        <ul>
-          <li><strong>Offensive Security Certificate in Ethical Hacking (OSCEH)</strong> — Cisco — <em>Issued Jul 2025</em></li>
-          <li><strong>Certified AI/ML Pentester (C‑AI/MLPen)</strong> — The SecOps Group — <em>Issued Jun 2025</em></li>
-          <li><strong>NASA Open Science Certified</strong> — NASA — <em>Issued May 2025</em></li>
-        </ul>
+        <div class="grid" style="gap:12px">
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" alt="Cisco"/>
+            <div>
+              <div class="cert-title">Offensive Security Certificate in Ethical Hacking (OSCEH)</div>
+              <div class="cert-meta">Cisco — Issued Jul 2025</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://img.shields.io/badge/SecOps%20Group-111?logo=securityscorecard&logoColor=fff" alt="The SecOps Group"/>
+            <div>
+              <div class="cert-title">Certified AI/ML Pentester (C‑AI/MLPen)</div>
+              <div class="cert-meta">The SecOps Group — Issued Jun 2025</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nasa/nasa-original.svg" onerror="this.src='https://img.shields.io/badge/NASA-0b3d91?logo=nasa&logoColor=fff'" alt="NASA"/>
+            <div>
+              <div class="cert-title">NASA Open Science Certified</div>
+              <div class="cert-meta">NASA — Issued May 2025</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card p-24">
+
+      <!-- Core -->
+      <div class="card p-24 reveal">
         <h3>Core</h3>
-        <ul>
-          <li><strong>CCNA: Enterprise Networking, Security, and Automation</strong> — Cisco</li>
-          <li><strong>Microsoft & Google Cybersecurity Professional Certificates</strong></li>
-          <li><strong>Fortinet NSE 1–3 (Certified Cybersecurity Associate)</strong></li>
-          <li><strong>AWS Knowledge Badges (Cloud, Networking, Architecting)</strong></li>
-          <li><strong>Juniper Open Learning (JNCIA tracks)</strong></li>
-        </ul>
+        <div class="grid" style="gap:12px">
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" alt="Cisco"/>
+            <div>
+              <div class="cert-title">CCNA: Enterprise Networking, Security, and Automation</div>
+              <div class="cert-meta">Cisco</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoft/microsoft-original.svg" alt="Microsoft"/>
+            <div>
+              <div class="cert-title">Cybersecurity Professional Certificate</div>
+              <div class="cert-meta">Microsoft</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Google"/>
+            <div>
+              <div class="cert-title">Cybersecurity Professional Certificate</div>
+              <div class="cert-meta">Google</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"/>
+            <div>
+              <div class="cert-title">AWS Knowledge: Cloud, Networking, Architecting</div>
+              <div class="cert-meta">Amazon Web Services</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fortinet/fortinet-original.svg" alt="Fortinet"/>
+            <div>
+              <div class="cert-title">Fortinet NSE 1–3 (Certified Cybersecurity Associate)</div>
+              <div class="cert-meta">Fortinet</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/juniper/juniper-original.svg" alt="Juniper"/>
+            <div>
+              <div class="cert-title">Open Learning: JNCIA tracks (SEC/Cloud/Junos)</div>
+              <div class="cert-meta">Juniper Networks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blue Team & NetAcad -->
+      <div class="card p-24 reveal">
+        <h3>Blue Team & NetAcad</h3>
+        <div class="grid" style="gap:12px">
+          <div class="cert">
+            <img src="https://img.shields.io/badge/Wazuh-2C2F36?logo=Wazuh&logoColor=fff" alt="Wazuh"/>
+            <div>
+              <div class="cert-title">Wazuh / Security Onion hands‑on</div>
+              <div class="cert-meta">SIEM & detection engineering</div>
+            </div>
+          </div>
+          <div class="cert">
+            <img src="https://img.shields.io/badge/Cisco%20NetAcad-0b5fff?logo=cisco&logoColor=fff" alt="Cisco NetAcad"/>
+            <div>
+              <div class="cert-title">Network Support, Defense, Endpoint Security</div>
+              <div class="cert-meta">Cisco (NetAcad)</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Projects (kept minimal; you can expand later) ===== -->
+  <!-- ===== Projects ===== -->
   <section id="projects" class="container">
-    <h2>Projects</h2>
-    <div class="grid grid-2">
-      <div class="card p-24">
+    <h2 class="reveal">Projects</h2>
+    <div class="grid grid-3">
+      <div class="card p-24 reveal tilt">
         <h3>SIEM + Detection Lab</h3>
-        <p>Deployed ELK/Wazuh with custom rules and hands‑on log analysis. Focus on actionable detections and clean runbooks.</p>
+        <p>ELK/Wazuh with custom rules, curated dashboards, and repeatable runbooks for triage.</p>
       </div>
-      <div class="card p-24">
+      <div class="card p-24 reveal tilt">
         <h3>Secure Network Design</h3>
-        <p>Multi‑segment design (VLANs, ACLs, VPN) and policy enforcement; simulated on Packet Tracer / pfSense.</p>
+        <p>Segmented design (VLANs/ACLs/VPN) simulated on Packet Tracer + pfSense; hardening notes included.</p>
+      </div>
+      <div class="card p-24 reveal tilt">
+        <h3>Automation Snippets</h3>
+        <p>Bash/PowerShell/Python scripts for admin tasks, lightweight ETL, and response helpers.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Skills ===== -->
   <section id="skills" class="container">
-    <h2>Skills</h2>
-    <div class="grid grid-2">
-      <div class="card p-24">
+    <h2 class="reveal">Skills</h2>
+    <div class="grid grid-3">
+      <div class="card p-24 reveal">
         <h3>Infrastructure</h3>
-        <p>Windows & Linux, AD/Entra, Azure/AWS, networking, virtualization, Intune/Autopilot, scripting (Bash, PowerShell, Python).</p>
+        <p>Windows & Linux, AD/Entra, Azure/AWS, virtualization, Intune/Autopilot, networking fundamentals.</p>
       </div>
-      <div class="card p-24">
+      <div class="card p-24 reveal">
         <h3>Security</h3>
-        <p>SIEM/SOAR, EDR, vulnerability management, incident triage, threat intel, Wazuh/Security Onion, Kali (for testing).</p>
+        <p>SIEM/SOAR, EDR, vuln management, incident triage, threat intel, Wazuh/Security Onion.</p>
+      </div>
+      <div class="card p-24 reveal">
+        <h3>Build & Code</h3>
+        <p>IaC basics, Docker, serverless, Bash, PowerShell, Python, HTML/CSS/JS.</p>
       </div>
     </div>
   </section>
@@ -172,6 +284,18 @@
   <script>
     // Set year automatically
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Navbar shadow when scrolled
+    const hdr = document.getElementById('hdr');
+    document.addEventListener('scroll', () => {
+      (window.scrollY > 8) ? hdr.classList.add('scrolled') : hdr.classList.remove('scrolled');
+    });
+
+    // Reveal on scroll
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target);} });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
