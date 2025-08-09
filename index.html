@@ -1,1133 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austin Batu - Cyberpunk Portfolio</title>
-    <style>
-        /* --- Global Styles & Variables --- */
-        :root {
-            --bg-color: #121212; /* Even darker base */
-            --bg-color-medium: #1a1a1a;
-            --bg-color-lighter: #2a2a2a;
-            --text-color: #e0e0e0;
-            --text-color-muted: #a0a0a0;
-            --primary-accent: #00ffff; /* Cyan */
-            --secondary-accent: #ff00ff; /* Magenta */
-            --tertiary-accent: #00ff7f; /* Spring Green */
-            --error-accent: #ff3333; /* Red for contrast */
-            --heading-font: 'Orbitron', 'Segoe UI', Tahoma, sans-serif; /* Futuristic font */
-            --body-font: 'Roboto Mono', 'Courier New', monospace; /* Monospaced for tech feel */
-            --link-color: var(--primary-accent);
-            --link-hover-color: var(--secondary-accent);
-            --border-color: var(--primary-accent);
-            --glow-primary: 0 0 8px var(--primary-accent), 0 0 12px var(--primary-accent), 0 0 16px var(--primary-accent);
-             --glow-secondary: 0 0 8px var(--secondary-accent), 0 0 12px var(--secondary-accent), 0 0 16px var(--secondary-accent);
-            --glow-tertiary: 0 0 8px var(--tertiary-accent), 0 0 12px var(--tertiary-accent), 0 0 16px var(--tertiary-accent);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Austin Batul — IT Consultant</title>
+  <meta name="description" content="IT Consultant specializing in Cloud, Security, Networks, Support, and Systems Engineering. Building toward Solutions Architecture & FinTech with AI/ML." />
+  <meta name="author" content="Austin Batul" />
+  <meta property="og:title" content="Austin Batul — IT Consultant" />
+  <meta property="og:description" content="Cloud • Security • Networks • Systems. M.S. Cybersecurity candidate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batulmonarchy.github.io/" />
 
-            /* Cursor - requires a Base64 encoded image or external URL */
-            --cursor-url: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMyIgc3Ryb2tlPSIjMDBGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+Cg=='); /* Simple cyan circle cursor */
-            --cursor-pointer-url: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCA MiAyIDYuNDggMiAxMlMyIDYgNi40OCAyIDExLjk5IDRIMTJWNEwxMiAyWiIgZmlsbD0iIzAwRkZGRiIvPgo8cGF0aCBkPSJNMTIgMjJDMTcuNTIgMjIgMjIgMTcuNTIgMjIgMTJTMTcuNTIgMiAxMiAyQzYuNDggMiAyIDYuNDggMiAxMlMxMSA2IDYgNi40OCAyIDEyIDEyIDIyWiIgc3Ryb2tlPSIjMDBGRkZGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K'); /* More distinct pointer */
-        }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-        /* Import Futuristic Font */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+  <style>
+    /* ===== Theme ===== */
+    :root{
+      --bg:#0c0f14;            /* page background */
+      --panel:#121826;          /* cards / navbar */
+      --panel-2:#0f1420;        /* subtle contrast */
+      --text:#e6e9ef;           /* main text */
+      --muted:#9aa3b2;          /* muted text */
+      --accent:#c8a96a;         /* refined gold */
+      --accent-2:#8aa4ff;       /* cool secondary */
+      --ring:rgba(200,169,106,.28);
+      --border:rgba(255,255,255,.08);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-             cursor: var(--cursor-url), auto; /* Apply custom cursor */
-        }
-        a:hover, button:hover {
-            cursor: var(--cursor-pointer-url), pointer; /* Change cursor on hover for links/buttons */
-        }
+    /* ===== Layout ===== */
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(12,15,20,.9),rgba(12,15,20,.65));backdrop-filter:blur(10px);z-index:20;border-bottom:1px solid var(--border)}
+    nav{display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--ring)}
+    .nav-links a{margin-left:18px;color:var(--muted);font-weight:600}
+    .nav-links a.active,.nav-links a:focus{color:var(--text)}
 
-        body {
-            font-family: var(--body-font);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
-            /* Subtle grid background */
-            background-image:
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
+    section{padding:72px 0;border-bottom:1px solid var(--border)}
+    .hero{display:grid;grid-template-columns:1.4fr .6fr;gap:28px;align-items:center}
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
+    /* ===== Typography ===== */
+    h1,h2,h3{margin:0 0 12px}
+    h1{font-size:44px;letter-spacing:.2px}
+    h1 .name{color:var(--text);font-weight:800}
+    h2{font-size:28px;color:var(--accent);font-weight:800}
+    h3{font-size:20px;color:var(--text);font-weight:700}
+    .lead{font-size:18px;color:var(--muted)}
 
-        /* Headings */
-        h1, h2, h3, h4 {
-            font-family: var(--heading-font);
-            color: var(--text-color);
-            margin-bottom: 1.2rem;
-             font-weight: 700; /* Bold headings */
-             letter-spacing: 1px; /* Slight letter spacing */
-        }
-        h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 0.8rem; text-shadow: var(--glow-primary); }
-        h2 {
-             font-size: 2.2rem;
-             margin-top: 3.5rem;
-             padding-bottom: 0.7rem;
-             border-bottom: 3px solid;
-             border-image: linear-gradient(to right, var(--primary-accent), var(--secondary-accent)) 1;
-             display: flex; /* Align icon and text */
-             align-items: center;
-             gap: 15px; /* Space between icon and text */
-             color: var(--primary-accent);
-        }
-        h2 .section-icon { /* Style for icons next to section titles */
-             width: 30px;
-             height: 30px;
-             fill: var(--primary-accent); /* Color the SVG icon */
-        }
-        h3 { font-size: 1.6rem; color: var(--secondary-accent); margin-top: 2rem; text-shadow: 0 0 5px var(--secondary-accent); }
-        h4 { font-size: 1.3rem; color: var(--tertiary-accent); margin-top: 1.5rem; font-weight: 400; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
-         h4 img.provider-logo { height: 20px; vertical-align: middle; margin-right: 5px; border-radius: 3px;} /* Logos in Certs */
+    /* ===== Cards / badges ===== */
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+    .p-24{padding:24px}
+    .grid{display:grid;gap:18px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .badges{display:flex;flex-wrap:wrap;gap:10px}
+    .badge{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--panel-2);font-size:13px;color:var(--muted)}
 
+    /* ===== Footer ===== */
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
 
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1rem;
-             color: var(--text-color-muted);
-        }
-        strong { color: var(--text-color); font-weight: 700;}
-
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-        a:hover {
-            color: var(--link-hover-color);
-            text-shadow: 0 0 8px var(--link-hover-color);
-            text-decoration: none; /* Keep underline off */
-        }
-
-        section {
-            padding: 80px 0;
-             /* Add a subtle top border separator */
-             border-top: 1px dashed rgba(0, 255, 255, 0.15);
-             position: relative;
-        }
-        section:first-of-type { border-top: none; } /* No top border on the first section after hero */
-
-
-        img.icon {
-             width: 35px;
-             height: 35px;
-             vertical-align: middle;
-             margin: 0 8px;
-             transition: transform 0.3s ease, filter 0.3s ease;
-             filter: brightness(0.9);
-        }
-        img.icon:hover {
-            transform: scale(1.2) rotate(5deg);
-             filter: brightness(1.1) drop-shadow(var(--glow-primary));
-        }
-
-        /* Glitch effect container for Name */
-        .glitch-wrapper {
-          position: relative;
-          display: inline-block;
-        }
-
-        /* --- Navigation --- */
-        #navbar {
-            position: sticky;
-            top: 0;
-            background-color: rgba(18, 18, 18, 0.85); /* Darker, more transparent */
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 0;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(0, 255, 255, 0.15);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-            transition: top 0.3s; /* Smooth hide/show */
-        }
-        /* Optional: Hide navbar on scroll down, show on scroll up */
-        /* #navbar.nav-hidden { top: -100px; } */
-
-        #navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        #navbar .logo a {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-accent);
-             text-shadow: var(--glow-primary);
-             text-decoration: none;
-             transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-         #navbar .logo a:hover {
-              color: var(--secondary-accent);
-              text-shadow: var(--glow-secondary);
-         }
-        #navbar ul { list-style: none; display: flex; }
-        #navbar ul li { margin-left: 25px; }
-        #navbar ul li a {
-            font-weight: 700;
-            font-family: var(--heading-font);
-            padding-bottom: 8px;
-            border-bottom: 3px solid transparent;
-            transition: color 0.3s ease, border-bottom-color 0.3s ease, text-shadow 0.3s ease;
-             position: relative;
-        }
-        /* Underline effect */
-         #navbar ul li a::after {
-            content: '';
-             position: absolute;
-             width: 0;
-             height: 3px;
-             bottom: -3px; /* Position below the link */
-             left: 0;
-             background-image: linear-gradient(to right, var(--secondary-accent), var(--tertiary-accent));
-             transition: width 0.4s ease;
-         }
-         #navbar ul li a:hover::after,
-         #navbar ul li a.active::after {
-            width: 100%;
-         }
-        #navbar ul li a:hover,
-        #navbar ul li a.active {
-            color: var(--text-color); /* Make text brighter on hover/active */
-             border-bottom-color: transparent; /* Remove the solid border for gradient */
-             text-shadow: 0 0 5px var(--text-color);
-        }
-
-
-        /* --- Header/Hero Section --- */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-             position: relative; /* Needed for pseudo-element overlay */
-             overflow: hidden; /* Hide overflowing pseudo-elements */
-             border-bottom: 3px solid;
-             border-image: linear-gradient(to right, var(--primary-accent), var(--secondary-accent)) 1;
-        }
-         /* Animated Gradient Background */
-         #hero::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -1;
-            background: linear-gradient(45deg, #1a1a1a, #2a002a, #002a2a, #1a1a1a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-
-         #hero h1 .highlight { /* Style for the name */
-            color: var(--primary-accent);
-            text-shadow: var(--glow-primary);
-             display: inline-block; /* Needed for potential animations */
-         }
-
-         #hero .intro-text {
-            max-width: 850px;
-            margin: 1.5rem auto;
-            font-size: 1.15rem;
-             color: var(--text-color); /* Make intro text brighter */
-             line-height: 1.8;
-             text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
-         }
-
-        #hero .social-links a {
-            margin: 0 12px;
-             display: inline-block; /* Needed for transform */
-        }
-        #hero .social-links img {
-             width: 45px; height: 45px;
-        }
-
-        /* Typewriter Cursor - Can be less prominent with gradient BG */
-        .typewriter::after {
-            content: '_';
-            display: inline-block;
-            animation: blink 0.8s infinite steps(1, end);
-            color: var(--primary-accent);
-             margin-left: 4px;
-             font-weight: bold;
-        }
-
-        @keyframes blink {
-             0%, 100% { opacity: 1; }
-             50% { opacity: 0; }
-         }
-
-        /* --- Certifications Section --- */
-         #certifications .cert-category {
-             margin-bottom: 2.5rem;
-             padding: 2rem;
-             background-color: rgba(42, 42, 42, 0.7); /* Slightly transparent card */
-             border-radius: 10px;
-             border: 1px solid rgba(0, 255, 255, 0.2); /* Subtle border */
-             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-             position: relative;
-             overflow: hidden; /* For potential corner effects */
-         }
-         #certifications .cert-category::before { /* Corner accent */
-              content: '';
-              position: absolute;
-              top: 0; left: 0;
-              width: 0; height: 0;
-              border-top: 30px solid var(--tertiary-accent);
-              border-right: 30px solid transparent;
-              opacity: 0.5;
-               transition: opacity 0.3s ease;
-         }
-
-         #certifications .cert-category:hover {
-              transform: translateY(-8px) scale(1.02);
-              box-shadow: 0 10px 30px rgba(0, 255, 127, 0.15), var(--glow-tertiary);
-              border-color: var(--tertiary-accent);
-         }
-          #certifications .cert-category:hover::before {
-               opacity: 0.8;
-          }
-
-         #certifications h3 { color: var(--primary-accent); margin-top: 0; margin-bottom: 1.5rem; } /* Category group title */
-         #certifications h4 { color: var(--tertiary-accent); margin-top: 0; margin-bottom: 1rem;} /* Provider Title */
-
-         #certifications ul { list-style: none; padding-left: 0; }
-         #certifications li {
-             margin-bottom: 1rem;
-             padding-left: 1.8rem;
-             position: relative;
-         }
-          /* Custom bullet using pseudo-element */
-         #certifications li::before {
-             content: '▹'; /* Cyber-style bullet */
-             position: absolute;
-             left: 0;
-             top: -2px; /* Fine-tune vertical alignment */
-             color: var(--secondary-accent);
-             font-size: 1.5em;
-             font-weight: bold;
-             line-height: 1.6;
-             text-shadow: 0 0 5px var(--secondary-accent);
-         }
-         #certifications li strong { color: var(--text-color); font-weight: 400; } /* Less bold for mono font */
-         #certifications li span {
-             display: block;
-             font-size: 0.9em;
-             color: var(--text-color-muted);
-             margin-top: 3px;
-         }
-         #certifications .cert-link {
-            margin-left: 8px;
-            font-size: 0.9em;
-            color: var(--primary-accent);
-             border-bottom: 1px dotted var(--primary-accent);
-             transition: color 0.3s ease, border-bottom-color 0.3s ease;
-         }
-          #certifications .cert-link:hover {
-               color: var(--secondary-accent);
-               border-bottom-color: var(--secondary-accent);
-          }
-
-
-        #certifications .badge-container {
-            display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.5rem; justify-content: center;
-        }
-         #certifications .badge-container img {
-             height: 28px; width: auto; border-radius: 4px;
-             transition: transform 0.3s ease, filter 0.3s ease;
-             filter: saturate(0.8) brightness(0.9);
-         }
-        #certifications .badge-container img:hover {
-            transform: scale(1.1);
-             filter: saturate(1.2) brightness(1.1);
-        }
-
-
-        /* --- Projects Section --- */
-         #projects .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-         /* Card Flip Structure */
-        .project-card {
-            background-color: transparent; /* Let the inner card handle background */
-            perspective: 1000px; /* Vanishing point for 3D effect */
-             border-radius: 10px;
-             min-height: 250px; /* Give cards a minimum height */
-        }
-        .project-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.7s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-             border-radius: 10px;
-        }
-        .project-card:hover .project-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .project-card-front, .project-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-            border-radius: 10px;
-            background-color: var(--bg-color-lighter);
-             border: 1px solid rgba(255, 0, 255, 0.2);
-        }
-         .project-card-front {
-            /* Front styles */
-            background: linear-gradient(135deg, var(--bg-color-medium), var(--bg-color-lighter));
-            color: var(--text-color);
-         }
-         .project-card-front h4 {
-             color: var(--primary-accent);
-             margin-bottom: 1rem;
-             font-size: 1.4rem;
-         }
-
-        .project-card-back {
-            /* Back styles */
-            background: linear-gradient(135deg, var(--bg-color-lighter), var(--bg-color-medium));
-            color: var(--text-color);
-            transform: rotateY(180deg);
-             /* Content for the back - could be tech stack, short description etc */
-             justify-content: center;
-             align-items: center;
-             display: flex;
-             flex-direction: column;
-         }
-          .project-card-back p {
-               font-size: 0.9rem;
-               color: var(--text-color-muted);
-               margin-bottom: 1rem;
-          }
-          .project-card-back a { /* Button style for the back */
-              display: inline-block;
-              margin-top: 1rem;
-              padding: 0.7rem 1.5rem;
-              background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
-              color: var(--bg-color);
-              border-radius: 5px;
-              font-weight: bold;
-              transition: transform 0.3s ease, box-shadow 0.3s ease;
-              text-decoration: none;
-          }
-          .project-card-back a:hover {
-               transform: scale(1.05);
-               box-shadow: var(--glow-secondary);
-               color: var(--bg-color); /* Keep dark text */
-               text-shadow: none;
-          }
-
-
-         /* Button on Front (if needed, e.g. for direct link) */
-         .project-card-front .btn {
-             margin-top: 1rem;
-             padding: 0.6rem 1.2rem;
-             background-color: var(--primary-accent);
-             color: var(--bg-color);
-             border: none;
-             border-radius: 5px;
-             font-weight: bold;
-             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-             font-family: var(--body-font);
-         }
-          .project-card-front .btn:hover {
-              background-color: var(--secondary-accent);
-              color: var(--text-color);
-               transform: translateY(-3px);
-              box-shadow: var(--glow-secondary);
-              text-shadow: none;
-          }
-
-
-         /* --- Skills/Tools Section --- */
-        #skills .skill-category {
-            margin-bottom: 2.5rem;
-            padding: 1.8rem;
-             background: repeating-linear-gradient(
-                -45deg,
-                rgba(42, 42, 42, 0.5),
-                rgba(42, 42, 42, 0.5) 10px,
-                rgba(42, 42, 42, 0.6) 10px,
-                rgba(42, 42, 42, 0.6) 20px
-            ); /* Subtle diagonal pattern */
-            border-radius: 8px;
-            border-left: 6px solid var(--secondary-accent);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
-             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-         #skills .skill-category:hover {
-              transform: translateX(5px);
-              box-shadow: inset 0 0 15px rgba(0,0,0,0.4), 0 5px 15px rgba(255, 0, 255, 0.15);
-               border-left-color: var(--primary-accent);
-         }
-
-        #skills h3 { /* Skill Category Title */
-            color: var(--secondary-accent);
-            margin-top: 0; margin-bottom: 1.5rem;
-             display: inline-block; /* To fit border */
-             border-bottom: 2px dotted var(--secondary-accent);
-             padding-bottom: 5px;
-        }
-         #skills h3 span { /* Icon before title */
-            margin-right: 10px;
-            font-size: 1.1em;
-         }
-
-        #skills .tools-list { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-        #skills .tools-list img {
-            height: 28px; width: auto; border-radius: 4px;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
-             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-        }
-         #skills .tools-list img:hover {
-             transform: scale(1.15) rotate(-3deg);
-             box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 5px var(--link-color); /* Use current link color for glow */
-         }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 3rem;
-            color: var(--text-color-muted);
-            font-size: 0.95rem;
-             background-color: var(--bg-color-medium);
-             border-top: 2px solid;
-             border-image: linear-gradient(to right, var(--tertiary-accent), var(--primary-accent)) 1;
-        }
-        footer .social-links { margin-bottom: 1.5rem; }
-        footer .social-links a img.icon { width: 40px; height: 40px; filter: grayscale(50%) brightness(0.8); }
-         footer .social-links a:hover img.icon { filter: grayscale(0%) brightness(1.1) drop-shadow(var(--glow-primary)); transform: scale(1.1);}
-
-
-        /* --- Scroll Reveal Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px); /* Start slightly lower */
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-             will-change: opacity, transform; /* Optimize animation */
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-         /* Add variations for different directions */
-         .reveal-left { transform: translateX(-40px); opacity: 0; transition-delay: 0.1s;}
-         .reveal-left.active { transform: translateX(0); opacity: 1; }
-
-         .reveal-right { transform: translateX(40px); opacity: 0; transition-delay: 0.1s;}
-         .reveal-right.active { transform: translateX(0); opacity: 1; }
-
-         .reveal-scale { transform: scale(0.9); opacity: 0; transition-delay: 0.2s; }
-         .reveal-scale.active { transform: scale(1); opacity: 1; }
-
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-             h1 { font-size: 2.5rem; }
-             h2 { font-size: 2rem; }
-             h3 { font-size: 1.5rem; }
-             h4 { font-size: 1.2rem; }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; gap: 10px; }
-             h2 .section-icon { width: 25px; height: 25px;}
-             .container { padding: 0 15px; }
-
-             /* Stack Navbar */
-            #navbar .container { flex-direction: column; align-items: center; }
-             #navbar .logo { margin-bottom: 1rem; }
-            #navbar ul { margin-top: 1rem; justify-content: center; width: 100%; flex-wrap: wrap; }
-            #navbar ul li { margin: 0 10px 15px 10px; } /* Add bottom margin for wrap */
-
-            #hero { min-height: 80vh; padding-top: 100px; } /* Adjust for stacked navbar */
-             #hero .intro-text { font-size: 1.05rem;}
-
-             #projects .project-grid { grid-template-columns: 1fr; gap: 1.5rem;} /* Stack projects */
-             .project-card { min-height: 220px; } /* Slightly smaller cards */
-
-             #skills .tools-list { justify-content: center; }
-             #certifications .cert-category { padding: 1.5rem; }
-        }
-         @media (max-width: 480px) {
-             :root { --cursor-url: auto; --cursor-pointer-url: pointer;} /* Disable custom cursor on mobile */
-             body { background-size: 40px 40px; } /* Slightly larger grid */
-             h1 { font-size: 1.8rem; }
-             h2 { font-size: 1.6rem; }
-             #hero .intro-text { font-size: 1rem; }
-             #hero .social-links img { width: 35px; height: 35px; }
-             section { padding: 60px 0; }
-             #navbar ul li { margin: 0 8px 12px 8px; } /* Smaller margins for nav links */
-              .project-card-front, .project-card-back { padding: 1rem; }
-              .project-card-front h4 { font-size: 1.2rem; }
-              #skills .tools-list img, #certifications .badge-container img { height: 24px; }
-         }
-
-    </style>
+    /* ===== Responsive ===== */
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-
-    <!-- SVG Icons Definition (Hidden) -->
-    <svg width="0" height="0" style="position:absolute">
-      <defs>
-        <symbol id="icon-user" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-        </symbol>
-         <symbol id="icon-certificate" viewBox="0 0 24 24">
-             <path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm7 10c0 4.52-2.98 8.66-7 9.93c-4.02-1.27-7-5.41-7-9.93V6.3l7-3.11l7 3.11V11zm-4.73-1.21l-1.77 1.77l-1.77-1.77l-1.41 1.41l1.77 1.77l-1.77 1.77l1.41 1.41l1.77-1.77l1.77 1.77l1.41-1.41l-1.77-1.77l1.77-1.77l-1.41-1.41z"/>
-        </symbol>
-         <symbol id="icon-project" viewBox="0 0 24 24">
-           <path fill="currentColor" d="M20.71 7.04c-.34-.34-.88-.34-1.22 0l-1.83 1.83l3.75 3.75l1.83-1.83c.34-.34.34-.88 0-1.22l-2.53-2.53zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l11.06-11.06l.92.92L5.92 19z"/>
-        </symbol>
-         <symbol id="icon-tools" viewBox="0 0 24 24">
-             <path fill="currentColor" d="M12.16 3l-.94 2H6.5a2.5 2.5 0 0 0-2.5 2.5v11a2.5 2.5 0 0 0 2.5 2.5h11a2.5 2.5 0 0 0 2.5-2.5V7.5a2.5 2.5 0 0 0-2.5-2.5h-4.72l-.94-2h-3.68zM17.5 9a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zM6.5 9a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3z"/>
-         </symbol>
-         <!-- Add more SVGs here as needed -->
-      </defs>
-    </svg>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="logo"><a href="#hero">A/B</a></div> <!-- Shorter Logo -->
-            <ul>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#certifications" class="nav-link">Certs</a></li> <!-- Shorter Name -->
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-            </ul>
+  <!-- ===== Nav ===== -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><span class="logo-dot"></span><span>A/B</span></div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#certs">Certifications</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
         </div>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <header id="hero">
-        <div class="container reveal reveal-scale">
-            <h1>Hi, I'm <span class="highlight" id="name-typewriter">Austin</span> 👋</h1>
-            <p class="intro-text">
-                Cloud Support Engineer | Ex-Systems & Networks Engineer | M.S. Cybersecurity Student. <br> Architecting secure & efficient solutions across Cloud, DevOps, AI/ML, and Cybersecurity. <br>Driven by tech, informed by humanities.
-            </p>
-            <div class="social-links">
-                 <a href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="icon" />
-                </a>
-                <a href="mailto:batulaustin.work@gmail.com">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Email" class="icon" />
-                </a>
-                 <a href="https://github.com/AustinColeBatu" target="_blank" rel="noopener noreferrer"> <!-- ACTUAL GITHUB LINK! -->
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" class="icon" style="filter: invert(85%) sepia(15%) saturate(50%) hue-rotate(180deg) brightness(100%) contrast(90%);" />
-                </a>
-            </div>
-        </div>
-    </header>
+  <!-- ===== Hero ===== -->
+  <section class="container hero" id="top">
+    <div>
+      <h1><span class="name">Austin Batul</span><br/>IT Consultant</h1>
+      <p class="lead">Cloud • Security • Networks • Support • Systems Engineering. M.S. Cybersecurity candidate; building toward Solutions Architecture & FinTech with efficient use of AI/ML.</p>
+      <div class="badges" style="margin-top:10px">
+        <a class="badge" href="mailto:batulaustin.work@gmail.com">Email</a>
+        <a class="badge" href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="badge" href="https://github.com/AustinColeBatu" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="card p-24">
+      <h3>Snapshot</h3>
+      <p class="lead">Currently supporting cloud & enterprise environments, designing secure, efficient systems and exploring AI/ML patterns for practical automation.</p>
+    </div>
+  </section>
 
-    <main>
-        <!-- About Section -->
-        <section id="about" class="container">
-             <h2 class="reveal">
-                <svg class="section-icon"><use xlink:href="#icon-user"></use></svg>
-                 About Me
-             </h2>
-              <p class="reveal">
-                Leveraging hands-on experience as a Cloud Support Engineer and former Systems & Networks Engineer, I tackle complex technical challenges from Tier 1 troubleshooting to advanced system configuration. My current pursuit of a Master's in Cybersecurity deepens this foundation, fueling my commitment to protecting the digital landscape.
-            </p>
-            <p class="reveal reveal-left">
-                My ambition lies in Solutions Architecture, specifically integrating Cloud platforms (AWS, Azure), DevOps principles, the transformative potential of AI/ML, and cutting-edge Cybersecurity strategies. I aim not just to build systems, but to build resilient, intelligent, and secure digital infrastructures.
-            </p>
-            <p class="reveal reveal-right">
-                Beyond the code and configurations, my background in Humanities & Social Sciences provides a crucial lens, emphasizing the human element in technology. It's about understanding impact, fostering ethical considerations, and ultimately using tech to improve lives. Living fully, learning constantly, giving my all.
-            </p>
-             <div class="social-links reveal" style="text-align: center; margin-top: 3rem;">
-                 <h4 style="color: var(--text-color-muted); font-family: var(--body-font); text-transform: uppercase; letter-spacing: 2px;">Connect:</h4>
-                 <a href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="icon" /></a>
-                 <a href="mailto:batulaustin.work@gmail.com"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Email" class="icon" /></a>
-                 <a href="https://github.com/AustinColeBatu" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" class="icon" style="filter: invert(85%) sepia(15%) saturate(50%) hue-rotate(180deg) brightness(100%) contrast(90%);" /></a>
-            </div>
-        </section>
+  <!-- ===== About ===== -->
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <div class="card p-24">
+      <p>Austin is an experienced IT professional working across development, cloud, security, networks, support, and systems engineering. He’s currently pursuing a Master’s in Cybersecurity while building a portfolio in solutions architecture and fintech, focusing on smart, efficient use of AI/ML. Long term, he’s aiming to contribute to quantitative finance. A lifelong interest in the humanities and social sciences keeps his perspective grounded and broad, shaping how he thinks about people, products, and the industries around them.</p>
+    </div>
+  </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="container">
-             <h2 class="reveal">
-                 <svg class="section-icon"><use xlink:href="#icon-certificate"></use></svg>
-                 Certifications & Badges
-            </h2>
+  <!-- ===== Certifications ===== -->
+  <section id="certs" class="container">
+    <h2>Certifications</h2>
+    <div class="grid grid-2">
+      <div class="card p-24">
+        <h3>New Additions</h3>
+        <ul>
+          <li><strong>Offensive Security Certificate in Ethical Hacking (OSCEH)</strong> — Cisco — <em>Issued Jul 2025</em></li>
+          <li><strong>Certified AI/ML Pentester (C‑AI/MLPen)</strong> — The SecOps Group — <em>Issued Jun 2025</em></li>
+          <li><strong>NASA Open Science Certified</strong> — NASA — <em>Issued May 2025</em></li>
+        </ul>
+      </div>
+      <div class="card p-24">
+        <h3>Core</h3>
+        <ul>
+          <li><strong>CCNA: Enterprise Networking, Security, and Automation</strong> — Cisco</li>
+          <li><strong>Microsoft & Google Cybersecurity Professional Certificates</strong></li>
+          <li><strong>Fortinet NSE 1–3 (Certified Cybersecurity Associate)</strong></li>
+          <li><strong>AWS Knowledge Badges (Cloud, Networking, Architecting)</strong></li>
+          <li><strong>Juniper Open Learning (JNCIA tracks)</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-            <div class="badge-container reveal reveal-scale">
-              <!-- Using slightly larger badges maybe? Keep as is for now. -->
-              <img src="https://img.shields.io/badge/-Cisco-007ACC?style=for-the-badge&logo=cisco&logoColor=white" alt="Cisco" />
-              <img src="https://img.shields.io/badge/-Microsoft-5E5E5E?style=for-the-badge&logo=microsoft&logoColor=white" alt="Microsoft" />
-              <img src="https://img.shields.io/badge/-Google-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google" />
-              <img src="https://img.shields.io/badge/-Fortinet-EE4C2C?style=for-the-badge&logo=fortinet&logoColor=white" alt="Fortinet" />
-              <img src="https://img.shields.io/badge/-Qualys-DC143C?style=for-the-badge&logo=qualys&logoColor=white" alt="Qualys" />
-              <img src="https://img.shields.io/badge/-Aruba-008B8B?style=for-the-badge&logo=aruba&logoColor=white" alt="HPE Aruba" />
-              <img src="https://img.shields.io/badge/-Juniper-556B2F?style=for-the-badge&logo=junipernetworks&logoColor=white" alt="Juniper Networks" />
-              <img src="https://img.shields.io/badge/-Palo Alto-FF7F50?style=for-the-badge&logo=paloaltonetworks&logoColor=white" alt="Palo Alto Networks" />
-              <img src="https://img.shields.io/badge/-AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS" />
-              <img src="https://img.shields.io/badge/-EC Council-0078D4?style=for-the-badge&logo=eccouncil&logoColor=white" alt="EC-Council" />
-              <img src="https://img.shields.io/badge/-SecOps Group-FF7F50?style=for-the-badge&logo=securityscorecard&logoColor=white" alt="The SecOps Group" /> <!-- Scorecard logo similar -->
-               <img src="https://img.shields.io/badge/-IBM-0530ad?style=for-the-badge&logo=ibm&logoColor=white" alt="IBM">
-               <img src="https://img.shields.io/badge/-(ISC)²-0033A0?style=for-the-badge&logo=isc2&logoColor=white" alt="ISC2">
-               <!-- Add more -->
-            </div>
+  <!-- ===== Projects (kept minimal; you can expand later) ===== -->
+  <section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="grid grid-2">
+      <div class="card p-24">
+        <h3>SIEM + Detection Lab</h3>
+        <p>Deployed ELK/Wazuh with custom rules and hands‑on log analysis. Focus on actionable detections and clean runbooks.</p>
+      </div>
+      <div class="card p-24">
+        <h3>Secure Network Design</h3>
+        <p>Multi‑segment design (VLANs, ACLs, VPN) and policy enforcement; simulated on Packet Tracer / pfSense.</p>
+      </div>
+    </div>
+  </section>
 
-            <h3 class="reveal">Core Certifications</h3>
-             <!-- Cisco -->
-             <div class="cert-category reveal">
-                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" class="provider-logo" alt="Cisco logo"/>Cisco</h4>
-                <ul>
-                  <li><strong>CCNA: Enterprise Networking, Security, and Automation</strong> <a href="https://www.credly.com/badges/421e0dee-b5ce-4e74-abfa-284c42938a40/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Apr 2023</span></li>
-                  <li><strong>CCNA: Switching, Routing, and Wireless Essentials</strong> <a href="https://www.credly.com/badges/dc0e8d15-d18a-476b-9814-da20771cf8dc/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Mar 2023</span></li>
-                  <li><strong>Junior Cybersecurity Analyst</strong> <a href="https://www.credly.com/badges/7dc61d6c-9e1f-44b4-add0-1b3a26873812/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: May 2024</span></li>
-                </ul>
-             </div>
-              <!-- SecOps -->
-              <div class="cert-category reveal reveal-right">
-                  <h4>The SecOps Group</h4>
-                  <ul>
-                      <li><strong>Certified Network Security Practitioner</strong> <a href="https://drive.google.com/file/d/1b7y4hP8j2zOj2z8T5hJLkzLRKlv46zvn/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: March 2025</span></li>
-                  </ul>
-              </div>
-              <!-- Google -->
-              <div class="cert-category reveal reveal-left">
-                 <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" class="provider-logo" alt="Google logo"/>Google</h4>
-                  <ul>
-                      <li><strong>Cybersecurity Professional Certificate</strong> <a href="https://drive.google.com/file/d/1BfyJsJEG6PjdR32HL_J1oRmsvaImj1hQ/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: June 2024</span></li>
-                  </ul>
-              </div>
-             <!-- Microsoft -->
-             <div class="cert-category reveal reveal-right">
-                 <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoft/microsoft-original.svg" class="provider-logo" alt="MS logo"/>Microsoft</h4>
-                 <ul>
-                     <li><strong>Cybersecurity Analyst Professional Certificate</strong> <a href="https://drive.google.com/file/d/1aJyZr9vfHpCRsVj7SHhh4NGlCTJ_92V6/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: Jun 2024</span></li>
-                 </ul>
-             </div>
-             <!-- Fortinet -->
-              <div class="cert-category reveal reveal-left">
-                 <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fortinet/fortinet-original.svg" class="provider-logo" alt="Fortinet logo"/>Fortinet</h4>
-                 <ul>
-                     <li><strong>Certified Cybersecurity Associate (NSE - 1,2,3)</strong> <a href="https://drive.google.com/file/d/1yKLGIhgN4ubNKke7a_WIcBAKnu2-s2_X/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: Feb 2024</span></li>
-                 </ul>
-             </div>
-             <!-- AWS -->
-             <div class="cert-category reveal reveal-right">
-                  <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="provider-logo" alt="AWS logo"/>Amazon Web Services</h4>
-                  <ul>
-                     <li><strong>AWS Knowledge: Cloud Essentials</strong> <a href="https://www.credly.com/badges/0f80635d-4cb8-47a8-a9f2-485e5c1dc85b/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Feb 2024</span></li>
-                     <li><strong>AWS Knowledge: Networking Core</strong> <a href="https://www.credly.com/badges/10c5e70c-cc57-4faa-a522-d0796dab0e45/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Feb 2024</span></li>
-                     <li><strong>AWS Knowledge: Architecting</strong> <a href="https://www.credly.com/badges/a60c486c-bcd1-418e-868c-2764689d4e41/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Feb 2024</span></li>
-                 </ul>
-             </div>
-              <!-- Juniper -->
-              <div class="cert-category reveal reveal-left">
-                 <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/juniper/juniper-original.svg" class="provider-logo" alt="Juniper logo"/>Juniper Networks</h4>
-                 <ul>
-                    <li><strong>Open Learning: Security Associate (JNCIA-SEC)</strong> <a href="https://drive.google.com/file/d/11NfplKX1Q3rL6YFsYuU2HsoDxO7-yc3_/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Open Learning: Cloud Associate (JNCIA-Cloud)</strong> <a href="https://drive.google.com/file/d/19MCNtJP4WQJWRhuz1mULCZr8WySYpCyc/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Open Learning: Junos Associate (JNCIA-Junos)</strong> <a href="https://drive.google.com/file/d/1zpK66KFHSO9VWls3JlkKxBeYsB5xpOFi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                 </ul>
-             </div>
-             <!-- Palo Alto -->
-              <div class="cert-category reveal reveal-right">
-                 <h4>Palo Alto Networks</h4>
-                 <ul>
-                    <li><strong>Micro-Credential: Virtual Network Security Admin (PMvNA)</strong> <a href="https://www.credly.com/badges/93113800-60a7-4fc0-8287-98bdb84c5a16/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Feb 2024</span></li>
-                    <li><strong>Micro-Credential: Cloud NGFW Admin (PMcNA)</strong> <a href="https://www.credly.com/badges/d66e7a70-d472-422f-8192-5cdd202ef5c5/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: Feb 2024</span></li>
-                 </ul>
-             </div>
-              <!-- Aruba -->
-             <div class="cert-category reveal reveal-left">
-                  <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/aruba/aruba-original.svg" class="provider-logo" alt="Aruba logo"/>HPE Aruba Networking</h4>
-                  <ul>
-                      <li><strong>Aruba Network Security Essentials</strong> <a href="https://drive.google.com/file/d/1Fc_2Jk6ITjZlQ4oZHLpCd66dCBPXV15R/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                  </ul>
-              </div>
-              <!-- EC-Council -->
-              <div class="cert-category reveal reveal-right">
-                  <h4><img src="https://www.vectorlogo.zone/logos/eccouncil/eccouncil-icon.svg" class="provider-logo" alt="EC Council logo"/>EC-Council</h4>
-                  <ul>
-                     <li><strong>Network Defense Essentials</strong> <a href="https://drive.google.com/file/d/1JPGz7zpXlLvD0IuKPcl_D-uHsD_LZqpi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: Feb 2024</span></li>
-                     <li><strong>Digital Forensics Essentials</strong> <a href="https://drive.google.com/file/d/1EsDFnQysIowDE4_gZG-MJGs5WaFbkXcP/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: Feb 2024</span></li>
-                     <li><strong>Ethical Hacking Essentials</strong> <a href="https://drive.google.com/file/d/1PK6wxktU7Hp2DHCAQVkWz8LTRFCpwqz9/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: Feb 2024</span></li>
-                  </ul>
-              </div>
-              <!-- Qualys -->
-              <div class="cert-category reveal reveal-left">
-                 <h4>Qualys</h4>
-                 <ul>
-                    <li><strong>Cert Specialist: Endpoint Detection & Response (EDR)</strong> <a href="https://drive.google.com/file/d/1PAKhOSkxhHsTJSkZaXb-ID3I6GbV8ig1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Cert Specialist: Policy Compliance</strong> <a href="https://drive.google.com/file/d/1MF9Rmb8hlDXxSn8TGz-nyFcaPt-Rqvg6/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Cert Specialist: Vuln Management Detection & Response (VMDR)</strong> <a href="https://drive.google.com/file/d/1Dwze0fljgk-mtO6viOdo9r9lMTZede3U/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link">[View]</a> <span>Issued: May 2024</span></li>
-                </ul>
-             </div>
+  <!-- ===== Skills ===== -->
+  <section id="skills" class="container">
+    <h2>Skills</h2>
+    <div class="grid grid-2">
+      <div class="card p-24">
+        <h3>Infrastructure</h3>
+        <p>Windows & Linux, AD/Entra, Azure/AWS, networking, virtualization, Intune/Autopilot, scripting (Bash, PowerShell, Python).</p>
+      </div>
+      <div class="card p-24">
+        <h3>Security</h3>
+        <p>SIEM/SOAR, EDR, vulnerability management, incident triage, threat intel, Wazuh/Security Onion, Kali (for testing).</p>
+      </div>
+    </div>
+  </section>
 
-             <!-- Subsidiary/Ongoing -->
-             <h3 style="margin-top: 4rem;" class="reveal">Subsidiary & Ongoing Learning</h3>
-             <!-- Add subsidiary certs using the same reveal pattern (e.g., reveal-right, reveal-left alternating) -->
-            <div class="cert-category reveal reveal-right">
-                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" class="provider-logo" alt="Cisco logo"/>Cisco (NetAcad)</h4>
-                 <ul>
-                    <li><strong>Network Support & Security</strong> <a href="https://www.credly.com/badges/fc5e0998-24d6-49f8-ad08-0bff38de0255/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Network Defense</strong> <a href="https://www.credly.com/badges/05154f0e-fe07-44e6-b6eb-d0c0fa5a3b76/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Endpoint Security</strong> <a href="https://www.credly.com/badges/2b12ff8d-57eb-47bf-8a73-fa50fb21d50c/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: May 2024</span></li>
-                    <li><strong>Intro to Cybersecurity</strong> <a href="https://www.credly.com/badges/ba9aab2b-a706-4705-a12b-8b9d89ee5d2c/public_url" target="_blank" rel="noopener noreferrer" class="cert-link">[Verify]</a> <span>Issued: May 2024</span></li>
-                </ul>
-             </div>
-             <!-- Add more Subsidiary Certifications following this structure -->
-             <!-- ... (Add the rest of your subsidiary certs with reveal classes) ... -->
+  <footer>
+    <div class="container">© <span id="y"></span> Austin Batul</div>
+  </footer>
 
-
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="container">
-            <h2 class="reveal">
-                <svg class="section-icon"><use xlink:href="#icon-project"></use></svg>
-                Projects Showcase
-            </h2>
-            <div class="project-grid">
-                 <!-- Project 1: SIEM -->
-                 <div class="project-card reveal">
-                      <div class="project-card-inner">
-                          <div class="project-card-front">
-                              <h4>🔍 SIEM Implementation & Log Analysis</h4>
-                              <p>Deployed and configured a SIEM solution for centralized logging and threat detection.</p>
-                          </div>
-                          <div class="project-card-back">
-                              <p>Utilized Elastic Stack (ELK) / Wazuh for log aggregation, analysis, and alerting rule creation.</p>
-                              <a href="https://drive.google.com/file/d/1ziURe_SCbi__GpKA-vjxUn5jgcDEWbtY/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a>
-                          </div>
-                      </div>
-                 </div>
-                 <!-- Project 2: SOAR -->
-                 <div class="project-card reveal reveal-right">
-                      <div class="project-card-inner">
-                           <div class="project-card-front">
-                               <h4>🤖 Security Automation with Shuffle SOAR</h4>
-                               <p>Automated incident response workflows using SOAR platform integration.</p>
-                          </div>
-                          <div class="project-card-back">
-                              <p>Integrated tools like TheHive, Cortex, and MISP via Shuffle workflows for automated enrichment and response.</p>
-                              <a href="https://drive.google.com/file/d/1KOf7CYwnspdKiU71QHgk-p4EGIdUzkW4/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a>
-                          </div>
-                      </div>
-                 </div>
-                 <!-- Project 3: Secure Network Design -->
-                 <div class="project-card reveal reveal-left">
-                      <div class="project-card-inner">
-                          <div class="project-card-front">
-                              <h4>🌐 Secure Network Design Simulation</h4>
-                               <p>Designed a multi-segment network with security zones using Cisco Packet Tracer.</p>
-                          </div>
-                           <div class="project-card-back">
-                              <p>Implemented firewalls (ASA), VLANs, ACLs, and VPNs to enforce security policies and segmentation.</p>
-                              <a href="https://drive.google.com/file/d/1rInuTWxb0ejad5s25-lQCsNdJ5vLpM-y/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a>
-                          </div>
-                      </div>
-                 </div>
-                <!-- Add other projects similarly with reveal classes -->
-                 <div class="project-card reveal reveal-right"> <div class="project-card-inner"> <div class="project-card-front"><h4>📶 Surveillance Wireless Mesh Design</h4> <p> Planned wireless mesh infrastructure for surveillance camera deployment.</p></div> <div class="project-card-back"><p> Focused on coverage, throughput, security (WPA3/Radius), and hardware selection (e.g., Meraki, Aruba).</p><a href="https://drive.google.com/file/d/1js_9NwPtL6b7v7Dd408t622WRH1DXz6Q/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a></div> </div> </div>
-                <div class="project-card reveal"> <div class="project-card-inner"> <div class="project-card-front"><h4>📡 Router Flashing & Network Coverage</h4> <p> Flashed custom firmware (DD-WRT/OpenWrt) for enhanced router capabilities.</p></div> <div class="project-card-back"><p> Increased network control, performance, and security features beyond stock firmware.</p><a href="https://drive.google.com/file/d/1aeHzdhhH6zieWcedLwQImKf81GzQqCdn/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a></div> </div> </div>
-                <div class="project-card reveal reveal-left"> <div class="project-card-inner"> <div class="project-card-front"><h4>🔐 Active Directory Hacking Project</h4> <p> Simulated common AD attacks and defense mechanisms in a lab environment.</p></div> <div class="project-card-back"><p> Focus: Kerberoasting, Pass-the-Hash, BloodHound analysis, GPO hardening. (Ongoing)</p><a href="#" target="_blank" rel="noopener noreferrer">Ongoing</a></div> </div> </div>
-                <div class="project-card reveal reveal-right"> <div class="project-card-inner"> <div class="project-card-front"><h4>🛡️ Homelab: Detection & Monitoring</h4> <p> Building a home lab environment for testing security tools and techniques.</p></div> <div class="project-card-back"><p> Components: Proxmox/ESXi, pfSense, Security Onion/Wazuh, AD Domain. (Ongoing)</p><a href="#" target="_blank" rel="noopener noreferrer">Ongoing</a></div> </div> </div>
-                <div class="project-card reveal"> <div class="project-card-inner"> <div class="project-card-front"><h4>🎯 Metasploit Windows Attack Sim</h4> <p> Conducted controlled vulnerability exploitation using Metasploit.</p></div> <div class="project-card-back"><p> Targeted known vulnerabilities (e.g., EternalBlue) in unpatched Windows VMs.</p><a href="https://drive.google.com/drive/u/0/folders/1dO1d1eCUB-D3cgasoruD5ENfyDhUw7_k" target="_blank" rel="noopener noreferrer">View Details</a></div> </div> </div>
-                <div class="project-card reveal reveal-left"> <div class="project-card-inner"> <div class="project-card-front"><h4>🏪 Microsoft Intune Kiosk Project</h4> <p> Configured dedicated devices for single-app kiosk mode using Intune.</p></div> <div class="project-card-back"><p> Involved creating configuration profiles, assigning policies, and testing on target devices.</p><a href="https://drive.google.com/file/d/1R9SP_2AINjtqdi0vEEk5cfFNrdheRE6n/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Details</a></div> </div> </div>
-            </div>
-        </section>
-
-        <!-- Skills & Technologies Section -->
-        <section id="skills" class="container">
-            <h2 class="reveal">
-                <svg class="section-icon"><use xlink:href="#icon-tools"></use></svg>
-                Tools & Technologies
-            </h2>
-
-             <div class="skill-category reveal reveal-left">
-                 <h3><span>🌐</span>Networking</h3>
-                 <div class="tools-list">
-                     <img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=Wireshark&logoColor=white" alt="Wireshark">
-                     <img src="https://img.shields.io/badge/Cisco_IOS-007ACC?style=for-the-badge&logo=cisco&logoColor=white" alt="Cisco IOS">
-                     <img src="https://img.shields.io/badge/pfSense-003366?style=for-the-badge&logo=pfsense&logoColor=white" alt="pfSense">
-                     <img src="https://img.shields.io/badge/BGP-8A2BE2?style=for-the-badge&logo=linux-foundation&logoColor=white" alt="BGP"> <!-- Generic Logo -->
-                      <img src="https://img.shields.io/badge/OSPF-FF6347?style=for-the-badge&logo=linux-foundation&logoColor=white" alt="OSPF"> <!-- Generic Logo -->
-                     <img src="https://img.shields.io/badge/VPN_(IPsec/SSL)-228B22?style=for-the-badge&logo=openvpn&logoColor=white" alt="VPN">
-                     <img src="https://img.shields.io/badge/Huawei-FF0000?style=for-the-badge&logo=Huawei&logoColor=white" alt="Huawei">
-                     <img src="https://img.shields.io/badge/DD--WRT/OpenWrt-800080?style=for-the-badge&logo=openwrt&logoColor=white" alt="DD-WRT/OpenWrt">
-                     <img src="https://img.shields.io/badge/Cisco_Meraki-6CAE00?style=for-the-badge&logo=Cisco&logoColor=white" alt="Cisco Meraki">
-                     <img src="https://img.shields.io/badge/Packet_Tracer-FF4500?style=for-the-badge&logo=Cisco&logoColor=white" alt="Packet Tracer">
-                 </div>
-             </div>
-             <!-- Repeat structure for other skills with reveal classes -->
-             <div class="skill-category reveal reveal-right">
-                 <h3><span>🖥️</span>SysAdmin & Deployment</h3>
-                 <div class="tools-list">
-                      <img src="https://img.shields.io/badge/Windows_Server-0078D6?style=for-the-badge&logo=Windows-Server&logoColor=white" alt="Windows Server">
-                     <img src="https://img.shields.io/badge/Active_Directory-0078D6?style=for-the-badge&logo=Windows&logoColor=white" alt="Active Directory">
-                     <img src="https://img.shields.io/badge/Azure_AD-6264A7?style=for-the-badge&logo=Microsoft-Azure&logoColor=white" alt="Azure AD/Entra ID">
-                      <img src="https://img.shields.io/badge/Microsoft_365-D83B01?style=for-the-badge&logo=Microsoft-Office&logoColor=white" alt="Microsoft 365">
-                     <img src="https://img.shields.io/badge/Intune/Autopilot-FF6A00?style=for-the-badge&logo=Microsoft-Intune&logoColor=white" alt="Intune/Autopilot">
-                      <img src="https://img.shields.io/badge/Linux_(Ubuntu/Debian)-E95420?style=for-the-badge&logo=Ubuntu&logoColor=white" alt="Ubuntu/Debian">
-                     <img src="https://img.shields.io/badge/Bash_Scripting-4EAA25?style=for-the-badge&logo=GNU-Bash&logoColor=white" alt="Bash">
-                     <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=PowerShell&logoColor=white" alt="PowerShell">
-                      <img src="https://img.shields.io/badge/Datto_RMM-0078D4?style=for-the-badge&logo=Datto&logoColor=white" alt="Datto RMM">
-                     <img src="https://img.shields.io/badge/NinjaRMM-6E00FF?style=for-the-badge&logo=NinjaRMM&logoColor=white" alt="NinjaRMM">
-                 </div>
-             </div>
-
-            <div class="skill-category reveal reveal-left">
-                 <h3><span>🔒</span>Cybersecurity (Blue Team Focus)</h3>
-                 <div class="tools-list">
-                      <img src="https://img.shields.io/badge/SIEM_(Sentinel/Splunk/ELK)-0078D7?style=for-the-badge&logo=Microsoft-Azure&logoColor=white" alt="SIEM (Sentinel/Splunk/ELK)">
-                      <img src="https://img.shields.io/badge/SOAR_(Shuffle)-6f42c1?style=for-the-badge&logo=Ansible&logoColor=white" alt="SOAR (Shuffle)"> <!-- Generic Automation Logo -->
-                     <img src="https://img.shields.io/badge/Wazuh-2C2F36?style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh">
-                     <img src="https://img.shields.io/badge/Security_Onion-006400?style=for-the-badge&logo=securityonion&logoColor=white" alt="Security Onion">
-                      <img src="https://img.shields.io/badge/Vuln_Mgmt_(Qualys/Nessus)-DC143C?style=for-the-badge&logo=qualys&logoColor=white" alt="Vuln Mgmt (Qualys/Nessus)">
-                     <img src="https://img.shields.io/badge/EDR_(Defender/CrowdStrike)-FF69B4?style=for-the-badge&logo=crowdstrike&logoColor=white" alt="EDR">
-                     <img src="https://img.shields.io/badge/Incident_Response-B22222?style=for-the-badge&logo=Palo%20Alto%20Networks&logoColor=white" alt="Incident Response">
-                     <img src="https://img.shields.io/badge/Threat_Intel_(MISP/VT)-00CED1?style=for-the-badge&logo=virustotal&logoColor=white" alt="Threat Intel">
-                     <img src="https://img.shields.io/badge/TheHive-4D4D4D?style=for-the-badge&logo=TheHive-Project&logoColor=white" alt="TheHive">
-                      <img src="https://img.shields.io/badge/Kali_Linux-557C93?style=for-the-badge&logo=Kali-Linux&logoColor=white" alt="Kali Linux (For Testing)">
-                 </div>
-             </div>
-
-             <div class="skill-category reveal reveal-right">
-                 <h3><span>☁️</span>Cloud Computing</h3>
-                 <div class="tools-list">
-                      <img src="https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=Amazon-AWS&logoColor=white" alt="AWS">
-                     <img src="https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=Microsoft-Azure&logoColor=white" alt="Microsoft Azure">
-                      <img src="https://img.shields.io/badge/Oracle_Cloud_(OCI)-F80000?style=for-the-badge&logo=Oracle&logoColor=white" alt="Oracle Cloud">
-                      <img src="https://img.shields.io/badge/Infrastructure_as_Code_(IaC)-8A2BE2?style=for-the-badge&logo=terraform&logoColor=white" alt="IaC (Terraform basics)">
-                     <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white" alt="Docker (Basics)">
-                      <img src="https://img.shields.io/badge/Serverless_(Lambda/Functions)-FFBF00?style=for-the-badge&logo=googlecloudfunctions&logoColor=white" alt="Serverless (Basics)">
-                 </div>
-             </div>
-
-             <div class="skill-category reveal reveal-left">
-                 <h3><span>💻</span>Coding & Scripting</h3>
-                 <div class="tools-list">
-                     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white" alt="Python">
-                     <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=GNU-Bash&logoColor=white" alt="Bash">
-                     <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=PowerShell&logoColor=white" alt="PowerShell">
-                     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white" alt="HTML">
-                     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white" alt="CSS">
-                      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black" alt="JavaScript (Basic)">
-                     <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white" alt="Java (Academic)">
-                      <img src="https://img.shields.io/badge/Git/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" alt="Git/GitHub">
-                 </div>
-             </div>
-
-              <div class="skill-category reveal reveal-right">
-                <h3><span>🖧</span>Virtualization</h3>
-                <div class="tools-list">
-                   <img src="https://img.shields.io/badge/VMware_(ESXi/vSphere)-607078?style=for-the-badge&logo=VMware&logoColor=white" alt="VMware">
-                   <img src="https://img.shields.io/badge/Proxmox_VE-E57000?style=for-the-badge&logo=proxmox&logoColor=white" alt="Proxmox">
-                   <img src="https://img.shields.io/badge/VirtualBox-555555?style=for-the-badge&logo=VirtualBox&logoColor=white" alt="VirtualBox">
-                    <img src="https://img.shields.io/badge/Hyper--V-0078D6?style=for-the-badge&logo=Windows&logoColor=white" alt="Hyper-V">
-               </div>
-            </div>
-
-            <div class="skill-category reveal reveal-left">
-                 <h3><span>🔧</span>Remote Access & Support</h3>
-                 <div class="tools-list">
-                     <img src="https://img.shields.io/badge/TeamViewer-0E8EE0?style=for-the-badge&logo=TeamViewer&logoColor=white" alt="TeamViewer">
-                     <img src="https://img.shields.io/badge/AnyDesk-D55E00?style=for-the-badge&logo=AnyDesk&logoColor=white" alt="AnyDesk">
-                     <img src="https://img.shields.io/badge/ConnectWise-2D66A0?style=for-the-badge&logo=ConnectWise&logoColor=white" alt="ConnectWise Control">
-                     <img src="https://img.shields.io/badge/Splashtop-00C5FF?style=for-the-badge&logo=Splashtop&logoColor=white" alt="Splashtop">
-                      <img src="https://img.shields.io/badge/SSH-FFC107?style=for-the-badge&logo=linux&logoColor=black" alt="SSH">
-                     <img src="https://img.shields.io/badge/RDP-FF7043?style=for-the-badge&logo=windows&logoColor=white" alt="RDP">
-                 </div>
-             </div>
-
-             <div class="skill-category reveal reveal-right">
-                 <h3><span>📚</span>Ticketing & Documentation</h3>
-                 <div class="tools-list">
-                      <img src="https://img.shields.io/badge/ITSM_(Zendesk/Freshdesk)-78C445?style=for-the-badge&logo=Zendesk&logoColor=white" alt="ITSM (Zendesk/Freshdesk)">
-                     <img src="https://img.shields.io/badge/PSA_(Autotask)-FF5733?style=for-the-badge&logo=Datto&logoColor=white" alt="PSA (Autotask)">
-                     <img src="https://img.shields.io/badge/Documentation_(IT_Glue/Confluence)-0085CA?style=for-the-badge&logo=confluence&logoColor=white" alt="Doc (IT Glue/Confluence)">
-                     <img src="https://img.shields.io/badge/SharePoint-0078D4?style=for-the-badge&logo=Microsoft-SharePoint&logoColor=white" alt="SharePoint">
-                 </div>
-             </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-             <div class="social-links reveal">
-                 <a href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="icon" /></a>
-                 <a href="mailto:batulaustin.work@gmail.com"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Email" class="icon" /></a>
-                 <a href="https://github.com/AustinColeBatu" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" class="icon" style="filter: invert(85%) sepia(15%) saturate(50%) hue-rotate(180deg) brightness(100%) contrast(90%);" /></a>
-            </div>
-            <p class="reveal">&copy; <span id="year"></span> Austin Batu // Architecting Tomorrow's Security</p>
-        </div>
-    </footer>
-
-    <script>
-        // --- Simple Typewriter Effect (Enhanced slightly) ---
-        const nameElement = document.getElementById('name-typewriter');
-        const nameText = nameElement.textContent; // Get text from HTML
-        let typeCharIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 120;
-        const deletingSpeed = 60;
-        const pauseTime = 1500; // Pause before deleting/retyping
-
-        function typeEffect() {
-            const currentText = nameText.substring(0, typeCharIndex);
-
-            if (!isDeleting) {
-                // Typing
-                nameElement.textContent = currentText;
-                 nameElement.classList.add('typewriter'); // Ensure cursor shows while typing
-                typeCharIndex++;
-                if (typeCharIndex > nameText.length) {
-                    // Finished typing, pause then start deleting
-                     nameElement.classList.remove('typewriter'); // Optionally hide cursor when paused
-                     isDeleting = true;
-                     setTimeout(typeEffect, pauseTime * 2); // Longer pause after finishing
-                     return; // Exit function for the pause duration
-                }
-            } else {
-                // Deleting
-                nameElement.textContent = currentText;
-                nameElement.classList.add('typewriter');
-                typeCharIndex--;
-                if (typeCharIndex === 0) {
-                     // Finished deleting, pause then start typing again
-                     isDeleting = false;
-                     setTimeout(typeEffect, pauseTime);
-                     return; // Exit function for the pause duration
-                 }
-            }
-
-            const speed = isDeleting ? deletingSpeed : typingSpeed;
-            setTimeout(typeEffect, speed);
-        }
-
-         document.addEventListener('DOMContentLoaded', () => {
-            if (nameElement && nameText) { // Ensure element and text exist
-                 nameElement.textContent = ''; // Clear initial static content
-                 setTimeout(typeEffect, 500); // Start after a brief delay
-            }
-        });
-
-
-        // --- Active Nav Link Highlighting on Scroll (Improved Robustness) ---
-         const sections = document.querySelectorAll('section[id], header[id]');
-         const navLinks = document.querySelectorAll('#navbar ul li a.nav-link');
-         const navHeight = document.getElementById('navbar').offsetHeight;
-
-         function changeNavOnScroll() {
-             let currentSectionId = '';
-             const scrollPosition = window.pageYOffset;
-
-             sections.forEach(section => {
-                 const sectionTop = section.offsetTop - navHeight - 50; // Adjust trigger point below navbar
-                 const sectionBottom = sectionTop + section.offsetHeight;
-
-                  if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                     currentSectionId = section.getAttribute('id');
-                 }
-             });
-
-             // If scrolled past the last section, keep last link active
-             const lastSection = sections[sections.length - 1];
-              if (scrollPosition >= (lastSection.offsetTop - navHeight - 50 + lastSection.offsetHeight)) {
-                  currentSectionId = lastSection.getAttribute('id');
-              }
-               // If near the top, no section might be "active", handle this? (optional)
-               // if (scrollPosition < (sections[1].offsetTop - navHeight - 50)) { currentSectionId = ''; }
-
-             navLinks.forEach(link => {
-                 link.classList.remove('active');
-                 // Match href attribute exactly (including the '#')
-                 if (link.getAttribute('href') === '#' + currentSectionId) {
-                     link.classList.add('active');
-                 }
-             });
-         }
-        window.addEventListener('scroll', changeNavOnScroll);
-        document.addEventListener('DOMContentLoaded', changeNavOnScroll); // Initial check
-
-
-        // --- Update Footer Year ---
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // --- Intersection Observer for Scroll Animations ---
-         const revealElements = document.querySelectorAll('.reveal');
-
-         const observerOptions = {
-             root: null, // relative to the viewport
-             rootMargin: '0px',
-             threshold: 0.15 // Trigger when 15% of the element is visible
-         };
-
-         const observerCallback = (entries, observer) => {
-             entries.forEach(entry => {
-                 if (entry.isIntersecting) {
-                     entry.target.classList.add('active');
-                     // Optional: Stop observing once revealed to save resources
-                     // observer.unobserve(entry.target);
-                 } else {
-                      // Optional: Remove 'active' to re-animate if scrolled out and back in
-                      // entry.target.classList.remove('active');
-                 }
-             });
-         };
-
-         const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-
-         revealElements.forEach(el => {
-             intersectionObserver.observe(el);
-         });
-
-
-         // --- Optional: Hide/Show Navbar on Scroll ---
-         /*
-         let lastScrollTop = 0;
-         const navbar = document.getElementById('navbar');
-         window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > navbar.offsetHeight) {
-                // Scroll Down
-                navbar.classList.add('nav-hidden');
-            } else {
-                // Scroll Up
-                navbar.classList.remove('nav-hidden');
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-        }, false);
-        */
-
-    </script>
-
+  <script>
+    // Set year automatically
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
