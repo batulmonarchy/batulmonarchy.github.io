@@ -1,6 +1,6 @@
 <!-- 
   Commit Message:
-  feat(certs): populate full certification list, fix vendor logo overflow
+  feat(contact): add contact form section and nav link
   
   External CDNs Used:
   - Google Fonts (Inter, Orbitron, Roboto Mono)
@@ -8,6 +8,7 @@
   - Devicon (for skill logos)
   
   TODOs:
+  - Configure Formspree endpoint for the contact form.
   - Validate all certification verification URLs. Currently using '#' as a placeholder.
 -->
 <!DOCTYPE html>
@@ -19,12 +20,12 @@
     
     <!-- SEO & Social Sharing Meta Tags -->
     <meta name="description" content="Portfolio of Austin B., a Philippines-based IT Consultant specializing in cloud, systems, and security solutions for US companies.">
-    <meta name="author" content="Austin Batul">
-    <meta name="keywords" content="Austin Batul, IT Consultant, Cybersecurity, Cloud Engineer, AWS, Azure, Network Security, Philippines, US companies">
+    <meta name="author" content="Austin B.">
+    <meta name="keywords" content="Austin B., IT Consultant, Cybersecurity, Cloud Engineer, AWS, Azure, Network Security, Philippines, US companies">
     <meta property="og:title" content="Austin B. | Web Portfolio">
     <meta property="og:description" content="Architecting secure and resilient cloud, network, and security solutions for a global client base.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://austincolebatu.github.io/"> <!-- Update with your final URL -->
+    <meta property="og:url" content="https://batulmonarchy.github.io/"> <!-- Update with your final URL -->
     <!-- <meta property="og:image" content="https://your-domain.com/assets/og-image.png"> -->
 
     <!-- Preconnect for performance -->
@@ -247,13 +248,51 @@
         .timeline-item .details { display: flex; flex-direction: column; }
         .timeline-item .vendor { font-size: 0.8rem; color: var(--text-secondary); }
 
-        /* --- Projects & Footer --- */
+        /* --- Projects --- */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
         .project-card { background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px var(--shadow-color); }
         .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
         .tag { background: rgba(0, 255, 175, 0.1); color: var(--accent-teal); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: var(--font-mono); }
         .project-links { margin-top: auto; padding-top: 1rem; display: flex; gap: 1rem; }
+
+        /* --- Contact Section --- */
+        #contact { text-align: center; }
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--bg-medium);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-secondary);
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--shadow-color);
+        }
+        .contact-form button {
+            align-self: center; /* Center the button */
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
         .main-footer { padding: 3rem 0; text-align: center; background-color: var(--bg-medium); border-top: 2px solid var(--accent-teal); }
         .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
         #email-copy-btn { cursor: pointer; }
@@ -298,6 +337,7 @@
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#certifications" class="nav-link">Certs</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -310,7 +350,7 @@
                 <div class="hero-content reveal">
                     <p class="subtitle"> IT Consultant // IT Engineering // MSc Cybersecurity '26 </p>
                     <h1>Austin B.</h1>
-                    <p class="value-prop">Developing & Managing resilient Cloud, Systems, and Security Solutions for a Global clientbase with a constant touch of customer service and support. Driven by ambition, grounded by humanities, and committed to lifelong learning.</p>
+                    <p class="value-prop">Engineering & Managing efficient cloud, network, and security solutions for a global client base with a constant touch of customer service and support. Driven by ambition, grounded by humanities, and committed to lifelong learning.</p>
                     <div class="cta-buttons">
                         <a href="https://www.linkedin.com/in/batulaustin" target="_blank" rel="noopener noreferrer" class="btn"><i data-feather="linkedin"></i>LinkedIn</a>
                         <a href="https://batulmonarchy.github.io" target="_blank" rel="noopener noreferrer" class="btn"><i data-feather="github"></i>GitHub</a>
@@ -481,100 +521,119 @@
             </div>
         </section>
 
-        <!-- Projects & Footer remain unchanged -->
-    <section id="projects" class="container">
-        <h2 class="reveal"><i data-feather="package"></i>Projects Showcase</h2>
-        <div class="project-grid">
+        <section id="projects" class="container">
+            <h2 class="reveal"><i data-feather="package"></i>Projects Showcase</h2>
+            <div class="project-grid">
 
-            <!-- SIEM Implementation & Log Analysis -->
-            <div class="project-card reveal">
-                <h4>🔍 SIEM Implementation & Log Analysis</h4>
-                <p><strong>Problem:</strong> Inefficient log monitoring and incident detection. 
-                <strong>Approach:</strong> Deployed Wazuh SIEM for centralized log collection, parsing, and alerting. 
-                Configured log pipelines and detection rules for common attack patterns. 
-                <strong>Outcome:</strong> Enabled real-time detection and historical analysis of security events, improving response time and compliance posture.</p>
-                <div class="project-tags"><span class="tag">SIEM</span><span class="tag">Wazuh</span><span class="tag">Log Analysis</span><span class="tag">Security Monitoring</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1ziURe_SCbi__GpKA-vjxUn5jgcDEWbtY/view" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                <!-- SIEM Implementation & Log Analysis -->
+                <div class="project-card reveal">
+                    <h4>🔍 SIEM Implementation & Log Analysis</h4>
+                    <p><strong>Problem:</strong> Inefficient log monitoring and incident detection. 
+                    <strong>Approach:</strong> Deployed Wazuh SIEM for centralized log collection, parsing, and alerting. 
+                    Configured log pipelines and detection rules for common attack patterns. 
+                    <strong>Outcome:</strong> Enabled real-time detection and historical analysis of security events, improving response time and compliance posture.</p>
+                    <div class="project-tags"><span class="tag">SIEM</span><span class="tag">Wazuh</span><span class="tag">Log Analysis</span><span class="tag">Security Monitoring</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1ziURe_SCbi__GpKA-vjxUn5jgcDEWbtY/view" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Security Automation (Shuffle SOAR) -->
+                <div class="project-card reveal">
+                    <h4>🤖 Security Automation (Shuffle SOAR)</h4>
+                    <p><strong>Problem:</strong> Manual triage and repetitive SOC tasks. 
+                    <strong>Approach:</strong> Integrated Shuffle SOAR with Wazuh to automate alert enrichment, IP blocking, and ticket creation. 
+                    <strong>Outcome:</strong> Reduced manual workload and improved mean time to respond by over 50%.</p>
+                    <div class="project-tags"><span class="tag">SOAR</span><span class="tag">Shuffle</span><span class="tag">Automation</span><span class="tag">Python</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1KOf7CYwnspdKiU71QHgk-p4EGIdUzkW4/view" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Secure Network Design Simulation -->
+                <div class="project-card reveal">
+                    <h4>🌐 Secure Network Design Simulation</h4>
+                    <p><strong>Problem:</strong> Need for a scalable, secure enterprise network layout. 
+                    <strong>Approach:</strong> Designed a segmented topology in Cisco Packet Tracer with DMZ, internal VLANs, and site-to-site VPNs. 
+                    <strong>Outcome:</strong> Delivered a secure, scalable architecture supporting distributed teams and compliance requirements.</p>
+                    <div class="project-tags"><span class="tag">Network Design</span><span class="tag">Cisco</span><span class="tag">Security</span><span class="tag">Packet Tracer</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1rInuTWxb0ejad5s25-lQCsNdJ5vLpM-y/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Capstone Project - Surveillance Wireless Mesh Design -->
+                <div class="project-card reveal">
+                    <h4>📊 Surveillance Wireless Mesh Design - Capstone Project</h4>
+                    <p><strong>Problem:</strong> Need for a large-scale, reliable wireless surveillance network. 
+                    <strong>Approach:</strong> Engineered a mesh topology with secure remote access, VLAN segmentation, and redundant links. 
+                    <strong>Outcome:</strong> Provided seamless coverage and real-time monitoring with high availability and scalability.</p>
+                    <div class="project-tags"><span class="tag">Mesh Networking</span><span class="tag">Wireless</span><span class="tag">Surveillance</span><span class="tag">Network Design</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1js_9NwPtL6b7v7Dd408t622WRH1DXz6Q/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Router Flashing & Network Coverage -->
+                <div class="project-card reveal">
+                    <h4>📜 Router Flashing & Network Coverage</h4>
+                    <p><strong>Problem:</strong> Limited router firmware capabilities and poor coverage. 
+                    <strong>Approach:</strong> Flashed custom firmware (OpenWRT) to extend router capabilities and optimized placement for max coverage. 
+                    <strong>Outcome:</strong> Enhanced network performance, coverage, and feature set.</p>
+                    <div class="project-tags"><span class="tag">OpenWRT</span><span class="tag">Router</span><span class="tag">Networking</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1aeHzdhhH6zieWcedLwQImKf81GzQqCdn/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Metasploit Windows Attack Simulation -->
+                <div class="project-card reveal">
+                    <h4>🎯 Metasploit Windows Attack Simulation</h4>
+                    <p><strong>Problem:</strong> Demonstrating Windows exploitation techniques in a safe lab. 
+                    <strong>Approach:</strong> Conducted controlled exploitation using Metasploit to gain access, escalate privileges, and maintain persistence. 
+                    <strong>Outcome:</strong> Produced training material and remediation guidelines for blue team readiness.</p>
+                    <div class="project-tags"><span class="tag">Metasploit</span><span class="tag">Pentesting</span><span class="tag">Windows</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/drive/u/0/folders/1dO1d1eCUB-D3cgasoruD5ENfyDhUw7_k" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Microsoft Intune Kiosk Project -->
+                <div class="project-card reveal">
+                    <h4>🖥️ Microsoft Intune Kiosk Project</h4>
+                    <p><strong>Problem:</strong> Securely deploying single-purpose, public-facing devices. 
+                    <strong>Approach:</strong> Configured kiosk profiles via Intune with strict policy enforcement and remote manageability. 
+                    <strong>Outcome:</strong> Delivered a secure and compliant fleet of kiosk devices.</p>
+                    <div class="project-tags"><span class="tag">Microsoft Intune</span><span class="tag">Endpoint Management</span><span class="tag">Azure</span></div>
+                    <div class="project-links"><a href="https://drive.google.com/file/d/1R9SP_2AINjtqdi0vEEk5cfFNrdheRE6n/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
+                </div>
+
+                <!-- Active Directory Hacking (Ongoing) -->
+                <div class="project-card reveal">
+                    <h4>🔒 Active Directory Hacking (Ongoing)</h4>
+                    <p><em>Details coming soon.</em></p>
+                    <div class="project-tags"><span class="tag">Active Directory</span><span class="tag">Red Team</span></div>
+                    <div class="project-links"><a href="#" class="btn disabled"><i data-feather="clock"></i>Details Coming Soon</a></div>
+                </div>
+
+                <!-- Homelab Detection & Monitoring (Ongoing) -->
+                <div class="project-card reveal">
+                    <h4>🏠 Homelab Detection & Monitoring (Ongoing)</h4>
+                    <p><em>Details coming soon.</em></p>
+                    <div class="project-tags"><span class="tag">Homelab</span><span class="tag">Monitoring</span></div>
+                    <div class="project-links"><a href="#" class="btn disabled"><i data-feather="clock"></i>Details Coming Soon</a></div>
+                </div>
             </div>
+        </section>
 
-            <!-- Security Automation (Shuffle SOAR) -->
-            <div class="project-card reveal">
-                <h4>🤖 Security Automation (Shuffle SOAR)</h4>
-                <p><strong>Problem:</strong> Manual triage and repetitive SOC tasks. 
-                <strong>Approach:</strong> Integrated Shuffle SOAR with Wazuh to automate alert enrichment, IP blocking, and ticket creation. 
-                <strong>Outcome:</strong> Reduced manual workload and improved mean time to respond by over 50%.</p>
-                <div class="project-tags"><span class="tag">SOAR</span><span class="tag">Shuffle</span><span class="tag">Automation</span><span class="tag">Python</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1KOf7CYwnspdKiU71QHgk-p4EGIdUzkW4/view" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Secure Network Design Simulation -->
-            <div class="project-card reveal">
-                <h4>🌐 Secure Network Design Simulation</h4>
-                <p><strong>Problem:</strong> Need for a scalable, secure enterprise network layout. 
-                <strong>Approach:</strong> Designed a segmented topology in Cisco Packet Tracer with DMZ, internal VLANs, and site-to-site VPNs. 
-                <strong>Outcome:</strong> Delivered a secure, scalable architecture supporting distributed teams and compliance requirements.</p>
-                <div class="project-tags"><span class="tag">Network Design</span><span class="tag">Cisco</span><span class="tag">Security</span><span class="tag">Packet Tracer</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1rInuTWxb0ejad5s25-lQCsNdJ5vLpM-y/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Capstone Project - Surveillance Wireless Mesh Design -->
-            <div class="project-card reveal">
-                <h4>📊 Surveillance Wireless Mesh Design - Capstone Project</h4>
-                <p><strong>Problem:</strong> Need for a large-scale, reliable wireless surveillance network. 
-                <strong>Approach:</strong> Engineered a mesh topology with secure remote access, VLAN segmentation, and redundant links. 
-                <strong>Outcome:</strong> Provided seamless coverage and real-time monitoring with high availability and scalability.</p>
-                <div class="project-tags"><span class="tag">Mesh Networking</span><span class="tag">Wireless</span><span class="tag">Surveillance</span><span class="tag">Network Design</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1js_9NwPtL6b7v7Dd408t622WRH1DXz6Q/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Router Flashing & Network Coverage -->
-            <div class="project-card reveal">
-                <h4>📜 Router Flashing & Network Coverage</h4>
-                <p><strong>Problem:</strong> Limited router firmware capabilities and poor coverage. 
-                <strong>Approach:</strong> Flashed custom firmware (OpenWRT) to extend router capabilities and optimized placement for max coverage. 
-                <strong>Outcome:</strong> Enhanced network performance, coverage, and feature set.</p>
-                <div class="project-tags"><span class="tag">OpenWRT</span><span class="tag">Router</span><span class="tag">Networking</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1aeHzdhhH6zieWcedLwQImKf81GzQqCdn/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Metasploit Windows Attack Simulation -->
-            <div class="project-card reveal">
-                <h4>🎯 Metasploit Windows Attack Simulation</h4>
-                <p><strong>Problem:</strong> Demonstrating Windows exploitation techniques in a safe lab. 
-                <strong>Approach:</strong> Conducted controlled exploitation using Metasploit to gain access, escalate privileges, and maintain persistence. 
-                <strong>Outcome:</strong> Produced training material and remediation guidelines for blue team readiness.</p>
-                <div class="project-tags"><span class="tag">Metasploit</span><span class="tag">Pentesting</span><span class="tag">Windows</span></div>
-                <div class="project-links"><a href="https://drive.google.com/drive/u/0/folders/1dO1d1eCUB-D3cgasoruD5ENfyDhUw7_k" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Microsoft Intune Kiosk Project -->
-            <div class="project-card reveal">
-                <h4>🖥️ Microsoft Intune Kiosk Project</h4>
-                <p><strong>Problem:</strong> Securely deploying single-purpose, public-facing devices. 
-                <strong>Approach:</strong> Configured kiosk profiles via Intune with strict policy enforcement and remote manageability. 
-                <strong>Outcome:</strong> Delivered a secure and compliant fleet of kiosk devices.</p>
-                <div class="project-tags"><span class="tag">Microsoft Intune</span><span class="tag">Endpoint Management</span><span class="tag">Azure</span></div>
-                <div class="project-links"><a href="https://drive.google.com/file/d/1R9SP_2AINjtqdi0vEEk5cfFNrdheRE6n/view?usp=drive_link" class="btn"><i data-feather="git-pull-request"></i>View Project</a></div>
-            </div>
-
-            <!-- Active Directory Hacking (Ongoing) -->
-            <div class="project-card reveal">
-                <h4>🔒 Active Directory Hacking (Ongoing)</h4>
-                <p><em>Details coming soon.</em></p>
-                <div class="project-tags"><span class="tag">Active Directory</span><span class="tag">Red Team</span></div>
-                <div class="project-links"><a href="#" class="btn disabled"><i data-feather="clock"></i>Details Coming Soon</a></div>
-            </div>
-
-            <!-- Homelab Detection & Monitoring (Ongoing) -->
-            <div class="project-card reveal">
-                <h4>🏠 Homelab Detection & Monitoring (Ongoing)</h4>
-                <p><em>Details coming soon.</em></p>
-                <div class="project-tags"><span class="tag">Homelab</span><span class="tag">Monitoring</span></div>
-                <div class="project-links"><a href="#" class="btn disabled"><i data-feather="clock"></i>Details Coming Soon</a></div>
-            </div>
-        </div>
-    </section>
-
+        <section id="contact" class="container">
+            <h2 class="reveal"><i data-feather="mail"></i>Contact Me</h2>
+            <p class="reveal" style="text-align: center; max-width: 60ch; margin-left: auto; margin-right: auto; margin-bottom: 3rem;">
+                Have a question, a project proposal, or just want to connect? Fill out the form below. I look forward to hearing from you.
+            </p>
+            <!-- 
+                FORM SETUP: 
+                To make this form work, you need to use a service like Formspree (https://formspree.io/).
+                1. Create an account on Formspree.
+                2. Create a new form and point it to your email: batulaustin.work@gmail.com
+                3. Formspree will give you a unique URL. Replace 'YOUR_UNIQUE_FORM_ID' in the action attribute below with your actual Formspree ID.
+                Example: action="https://formspree.io/f/xxxxxxxx"
+            -->
+            <form action="https://formspree.io/f/mblkqerg" method="POST" class="contact-form reveal">
+                <input type="text" name="name" required placeholder="Your Name">
+                <input type="email" name="_replyto" required placeholder="Your Email">
+                <textarea name="message" rows="6" required placeholder="Your Message"></textarea>
+                <button type="submit" class="btn">Send Message <i data-feather="send"></i></button>
+            </form>
+        </section>
 
     </main>
 
@@ -735,6 +794,15 @@
             { vendor: 'Qualys', title: 'Certified Specialist: Policy Compliance', date: new Date('2024-05-01'), url: 'https://drive.google.com/file/d/1MF9Rmb8hlDXxSn8TGz-nyFcaPt-Rqvg6/view?usp=drive_link' },
             { vendor: 'Qualys', title: 'Certified Specialist: Vulnerability Management Detection and Response (VMDR)', date: new Date('2024-05-01'), url: 'https://drive.google.com/file/d/1Dwze0fljgk-mtO6viOdo9r9lMTZede3U/view?usp=drive_link' },
 
+
+            //Holy Angel University panel ---
+          
+            { vendor: 'Holy Angel University', title: 'Certified Ethical Hacker', date: new Date('2025-07-23'), url: 'https://badgr.com/public/assertions/OzzS8z6URXq5NFCIelrelw?identity__email=abatul%40student.hau.edu.ph' },
+            { vendor: 'Holy Angel University', title: 'Vulnerability Exploitation Specialist', date: new Date('2025-07-21'), url: 'https://badgr.com/public/assertions/A2IaiWQkS92u3MFiTQGE4Q?identity__email=abatul%40student.hau.edu.ph' },
+            { vendor: 'Holy Angel University', title: 'Information Gathering Specialist', date: new Date('2025-07-21'), url: 'https://badgr.com/public/assertions/uhM6uocoRU-as_60QqlDlg?identity__email=abatul%40student.hau.edu.ph' },
+            { vendor: 'Holy Angel University', title: 'Penetration Testing Planner', date: new Date('2025-07-21'), url: 'https://badgr.com/public/assertions/IcwlL0dvQhaOEPHuFobJZA?identity__email=abatul%40student.hau.edu.ph' },
+                
+
             // OPSWAT
             { vendor: 'OPSWAT Academy', title: 'Introduction to Critical Infrastructure Protection (ICIP)', date: new Date('2024-02-01'), url: 'https://www.credly.com/badges/0a8b9b0a-2504-41b5-b6b5-a37c8fc86c58/public_url' },
 
@@ -759,6 +827,7 @@
             'HPE Aruba Networking': 'https://img.shields.io/badge/-HPE%20Aruba-007398?style=for-the-badge&logo=aruba&logoColor=white',
             'EC-Council': 'https://img.shields.io/badge/-EC%20Council-005A94?style=for-the-badge&logo=eccouncil&logoColor=white',
             'Qualys': 'https://img.shields.io/badge/-Qualys-ED2E26?style=for-the-badge&logo=qualys&logoColor=white',
+            'Holy Angel University': 'https://img.shields.io/badge/-Holy%20Angel%20University-B71C1C?style=for-the-badge&logo=graduation-cap&logoColor=white',
             'IBM & (ISC)²': 'https://img.shields.io/badge/-IBM%20%26%20(ISC)%C2%B2-0530ad?style=for-the-badge&logo=ibm&logoColor=white',
             'SkillFront': 'https://img.shields.io/badge/-SkillFront-4CAF50?style=for-the-badge',
             'OPSWAT Academy': 'https://img.shields.io/badge/-OPSWAT-00AEEF?style=for-the-badge',
