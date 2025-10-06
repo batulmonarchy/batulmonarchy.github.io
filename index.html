@@ -1,6 +1,6 @@
 <!-- 
   Commit Message:
-  feat(contact): add contact form section and nav link
+  feat(certs): add CompTIA Security+ certification
   
   External CDNs Used:
   - Google Fonts (Inter, Orbitron, Roboto Mono)
@@ -8,8 +8,7 @@
   - Devicon (for skill logos)
   
   TODOs:
-  - Configure Formspree endpoint for the contact form.
-  - Validate all certification verification URLs. Currently using '#' as a placeholder.
+  - Validate all certification verification URLs.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -619,15 +618,7 @@
             <p class="reveal" style="text-align: center; max-width: 60ch; margin-left: auto; margin-right: auto; margin-bottom: 3rem;">
                 Have a question, a project proposal, or just want to connect? Fill out the form below. I look forward to hearing from you.
             </p>
-            <!-- 
-                FORM SETUP: 
-                To make this form work, you need to use a service like Formspree (https://formspree.io/).
-                1. Create an account on Formspree.
-                2. Create a new form and point it to your email: batulaustin.work@gmail.com
-                3. Formspree will give you a unique URL. Replace 'YOUR_UNIQUE_FORM_ID' in the action attribute below with your actual Formspree ID.
-                Example: action="https://formspree.io/f/xxxxxxxx"
-            -->
-            <form action="https://formspree.io/f/mblkqerg" method="POST" class="contact-form reveal">
+            <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="contact-form reveal">
                 <input type="text" name="name" required placeholder="Your Name">
                 <input type="email" name="_replyto" required placeholder="Your Email">
                 <textarea name="message" rows="6" required placeholder="Your Message"></textarea>
@@ -712,6 +703,9 @@
             
             // NASA
             { vendor: 'NASA', title: 'NASA Open Science Certified', date: new Date('2025-05-01'), url: 'https://www.credly.com/badges/720a03c2-7ab1-4618-a703-47a0f3daa6d4/public_url' },
+
+            // CompTIA
+            { vendor: 'CompTIA', title: 'CompTIA Security+', date: new Date('2024-05-24'), url: 'https://www.credly.com/badges/1aace285-e443-4881-a5f3-8748fb322ff3/public_url' },
 
             // Cisco
             { vendor: 'Cisco', title: 'Offensive Security Certificate in Ethical Hacking (OSCEH)', date: new Date('2025-07-01'), url: 'https://www.credly.com/badges/26b1b226-0f77-408f-825c-8632698f51a6/public_url' },
@@ -816,6 +810,7 @@
         const logoMap = {
             'EF SET': 'https://img.shields.io/badge/-EF%20SET-00b0d4?style=for-the-badge',
             'NASA': 'https://img.shields.io/badge/-NASA-0B3D91?style=for-the-badge&logo=nasa&logoColor=white',
+            'CompTIA': 'https://img.shields.io/badge/-CompTIA-D41B2C?style=for-the-badge&logo=comptia&logoColor=white',
             'Cisco': 'https://img.shields.io/badge/-Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white',
             'The SecOps Group': 'https://img.shields.io/badge/-The%20SecOps%20Group-FF7F50?style=for-the-badge&logo=securityscorecard&logoColor=white',
             'Google': 'https://img.shields.io/badge/-Google-4285F4?style=for-the-badge&logo=google&logoColor=white',
